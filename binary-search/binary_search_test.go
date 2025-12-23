@@ -14,6 +14,8 @@ func TestBinarySearch(t *testing.T) {
 		want := true
 		got := BinarySearch(arr, v)
 		AssertBinarySearch(t, got, want, v, arr)
+		got = BinarySearchIterative(arr, v)
+		AssertBinarySearch(t, got, want, v, arr)
 	})
 
 	t.Run("Should return false if the element does not exist in the array", func(t *testing.T) {
@@ -22,7 +24,8 @@ func TestBinarySearch(t *testing.T) {
 		want := false
 		got := BinarySearch(arr, v)
 		AssertBinarySearch(t, got, want, v, arr)
-
+		got = BinarySearchIterative(arr, v)
+		AssertBinarySearch(t, got, want, v, arr)
 	})
 
 	t.Run("Should return true if the element exists in slice of size 1", func(t *testing.T) {
@@ -31,12 +34,17 @@ func TestBinarySearch(t *testing.T) {
 		want := true
 		got := BinarySearch(arr, v)
 		AssertBinarySearch(t, got, want, v, arr)
+
+		got = BinarySearchIterative(arr, v)
+		AssertBinarySearch(t, got, want, v, arr)
 	})
 	t.Run("Should return false if the element does not exist in slice of size 1", func(t *testing.T) {
 		arr := []int{9}
 		v := 11
 		want := false
 		got := BinarySearch(arr, v)
+		AssertBinarySearch(t, got, want, v, arr)
+		got = BinarySearchIterative(arr, v)
 		AssertBinarySearch(t, got, want, v, arr)
 	})
 	t.Run("Should return false if the element does not exist in slice of size 0", func(t *testing.T) {
@@ -45,12 +53,16 @@ func TestBinarySearch(t *testing.T) {
 		want := false
 		got := BinarySearch(arr, v)
 		AssertBinarySearch(t, got, want, v, arr)
+		got = BinarySearchIterative(arr, v)
+		AssertBinarySearch(t, got, want, v, arr)
 	})
 	t.Run("Should return true if an element exists in a large slice", func(t *testing.T) {
 		_, sorted := tests.CreateRandomArray(10000, 100000)
 		v := sorted[4]
 		got := BinarySearch(sorted, v)
 		want := true
+		AssertBinarySearch(t, got, want, v, sorted)
+		got = BinarySearchIterative(sorted, v)
 		AssertBinarySearch(t, got, want, v, sorted)
 	})
 	t.Run("Should return true for negative numbers that exist in slice", func(t *testing.T) {
@@ -59,7 +71,8 @@ func TestBinarySearch(t *testing.T) {
 		want := true
 		got := BinarySearch(arr, v)
 		AssertBinarySearch(t, got, want, v, arr)
-
+		got = BinarySearchIterative(arr, v)
+		AssertBinarySearch(t, got, want, v, arr)
 	})
 }
 
