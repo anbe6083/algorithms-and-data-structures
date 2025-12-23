@@ -8,27 +8,28 @@ func MergeSort(arr []int) []int {
 	if len(arr) < 2 {
 		return arr
 	}
-	q := len(arr) / 2
-	left := MergeSort(arr[:q])
-	right := MergeSort(arr[q:])
-	sorted := Merge(left, right)
-
-	return sorted
+	mid := len(arr) / 2
+	leftArr := MergeSort(arr[:mid])
+	rightArr := MergeSort(arr[mid:])
+	return Merge(leftArr, rightArr)
 }
 
 func Merge(leftArr, rightArr []int) []int {
-	arr := []int{}
-	i, j := 0, 0
+	var result []int
+
+	i := 0
+	j := 0
+
 	for i < len(leftArr) && j < len(rightArr) {
 		if leftArr[i] <= rightArr[j] {
-			arr = append(arr, leftArr[i])
+			result = append(result, leftArr[i])
 			i++
 		} else {
-			arr = append(arr, rightArr[j])
+			result = append(result, rightArr[j])
 			j++
 		}
 	}
-	arr = append(arr, leftArr[i:]...)
-	arr = append(arr, rightArr[j:]...)
-	return arr
+	result = append(result, leftArr[i:]...)
+	result = append(result, rightArr[j:]...)
+	return result
 }
