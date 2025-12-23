@@ -1,6 +1,10 @@
 package main
 
-import "testing"
+import (
+	"testing"
+
+	tests "github.com/anbe6083/intro-to-algorithms"
+)
 
 func TestBinarySearch(t *testing.T) {
 
@@ -42,7 +46,21 @@ func TestBinarySearch(t *testing.T) {
 		got := BinarySearch(arr, v)
 		AssertBinarySearch(t, got, want, v, arr)
 	})
+	t.Run("Should return true if an element exists in a large slice", func(t *testing.T) {
+		_, sorted := tests.CreateRandomArray(10000, 100000)
+		v := sorted[4]
+		got := BinarySearch(sorted, v)
+		want := true
+		AssertBinarySearch(t, got, want, v, sorted)
+	})
+	t.Run("Should return true for negative numbers that exist in slice", func(t *testing.T) {
+		arr := []int{-1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+		v := -1
+		want := true
+		got := BinarySearch(arr, v)
+		AssertBinarySearch(t, got, want, v, arr)
 
+	})
 }
 
 func AssertBinarySearch(t testing.TB, got, want bool, v int, arr []int) {
