@@ -38,12 +38,3 @@ func insertionSortNonincreasing(array []int) []int {
 	}
 	return array
 }
-
-func linearSearch(array []int, v int) int {
-	for i := 0; i < len(array); i++ {
-		if array[i] == v {
-			return i
-		}
-	}
-	return -1
-}
