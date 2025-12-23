@@ -74,6 +74,15 @@ func TestBinarySearch(t *testing.T) {
 		got = BinarySearchIterative(arr, v)
 		AssertBinarySearch(t, got, want, v, arr)
 	})
+	t.Run("Should return true if the element exists in the array", func(t *testing.T) {
+		arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+		v := 10
+		want := true
+		got := BinarySearch(arr, v)
+		AssertBinarySearch(t, got, want, v, arr)
+		got = BinarySearchIterative(arr, v)
+		AssertBinarySearch(t, got, want, v, arr)
+	})
 }
 
 func AssertBinarySearch(t testing.TB, got, want bool, v int, arr []int) {
